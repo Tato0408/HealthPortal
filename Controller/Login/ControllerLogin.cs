@@ -185,7 +185,7 @@ namespace HealthPortal.Controller.Login
         private void AttemptLogin(object sender, EventArgs e)
         {
             DAOLogin dao = new DAOLogin();
-            dao.Username = frmLogin.txtUsername.Texts.Trim();
+            dao.Username = ResolveUsername();
             dao.Password = CommonMethods.ComputeSha256Hash(frmLogin.txtPassword.Texts.Trim());
             if (dao.EvaluateLogin() == true && CurrentUserData.Username.Equals(dao.Username))
             {
@@ -227,26 +227,37 @@ namespace HealthPortal.Controller.Login
             if (!string.IsNullOrEmpty(frmLogin.txtUsername.Texts.Trim()))
             {
                 DAOLogin dao = new DAOLogin();
-                dao.Username = frmLogin.txtUsername.Texts.Trim();
+                dao.Username = ResolveUsername();
                 if (dao.ConfirmUser())
                 {
-                    FrmRecoveryMethods frmRecoveryMethods = new FrmRecoveryMethods(frmLogin.txtUsername.Texts.Trim());
+                    FrmRecoveryMethods frmRecoveryMethods = new FrmRecoveryMethods(dao.Username);
                     frmLogin.Hide();
                     frmRecoveryMethods.Show();
                 }
                 else
                 {
-                    MessageBox.Show("El usuario ingresado no existe. Verifique la información proporcionada e intente de nuevo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El usuario o correo ingresado no existe. Verifique la información proporcionada e intente de nuevo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Para poder utilizar los métodos de recuperación disponibles, por favor ingrese su usuario.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Para poder utilizar los métodos de recuperación disponibles, por favor ingrese su usuario o correo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+        // El campo acepta el usuario o su correo; si es un correo, se busca a qué usuario pertenece.
+        private string ResolveUsername()
+        {
+            string input = frmLogin.txtUsername.Texts.Trim();
+            if (!input.Contains("@"))
+            {
+                return input;
+            }
+            DAOLogin dao = new DAOLogin();
+            return dao.GetUsernameByEmail(input.ToLowerInvariant()) ?? input;
         }
         private string GetPlaceholderText(CustomTextBox txt)
         {
-            if (txt == frmLogin.txtUsername) return "Usuario";
+            if (txt == frmLogin.txtUsername) return "Usuario o correo";
             if (txt == frmLogin.txtPassword) return "Contraseña";
             return string.Empty;
         }

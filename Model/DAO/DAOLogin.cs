@@ -115,6 +115,34 @@ namespace HealthPortal.Model.DAO
                 command.Connection.Close();
             }
         }
+        /// <summary>
+        /// Devuelve el usuario al que pertenece un correo, o null si ningún usuario lo tiene registrado.
+        /// </summary>
+        public string GetUsernameByEmail(string email)
+        {
+            try
+            {
+                command.Connection = getConnection();
+                string query = "SELECT [usuario] FROM [Institución].[tbPersonas] WHERE [correoPersona] = @email AND [usuario] IS NOT NULL";
+                SqlCommand cmd = new SqlCommand(query, command.Connection);
+                cmd.Parameters.AddWithValue("email", email);
+                return cmd.ExecuteScalar() as string;
+            }
+            catch (SqlException)
+            {
+                CommonMethods.HandleError("EC_201");
+                return null;
+            }
+            catch (Exception)
+            {
+                CommonMethods.HandleError("EC_201");
+                return null;
+            }
+            finally
+            {
+                command.Connection.Close();
+            }
+        }
         public bool ConfirmUser()
         {
             try

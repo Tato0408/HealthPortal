@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing.Text;
 using System.Linq;
 using System.Net.Mail;
@@ -9,6 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HealthPortal.Model;
 using HealthPortal.Model.DAO;
 using HealthPortal.Model.DTO;
 using HealthPortal.View.FirstUsage;
@@ -88,6 +90,7 @@ namespace HealthPortal.Helper
                     DTOdbContext.User = DecodeString(string.Empty);
                     DTOdbContext.Password = DecodeString(string.Empty);
                 }
+                dbContext.ApplyConnectionToReports();
             }
             else
             {
@@ -141,100 +144,71 @@ namespace HealthPortal.Helper
                 return;
             }
             string tag = txt.Tag.ToString();
+            // Ctrl + V: se pega el texto del portapapeles filtrado con la misma validación del campo,
+            // para poder pegar, por ejemplo, la contraseña temporal que llega por correo
+            if (e.KeyChar == (char)22)
+            {
+                PasteValidatedText(txt, tag);
+                e.Handled = true;
+                return;
+            }
+            // Borrar, tabulador, Ctrl + C, Ctrl + X, Ctrl + A y Ctrl + Z siempre se permiten
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
+            if (tag == "email")
+            {
+                e.KeyChar = char.ToLowerInvariant(e.KeyChar);
+            }
+            if (!IsAllowedCharacter(tag, e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private static void PasteValidatedText(CustomTextBox txt, string tag)
+        {
+            if (!Clipboard.ContainsText())
+            {
+                return;
+            }
+            string text = Clipboard.GetText().Trim();
+            if (tag == "email")
+            {
+                text = text.ToLowerInvariant();
+            }
+            txt.InsertText(new string(text.Where(c => IsAllowedCharacter(tag, c)).ToArray()));
+        }
+        private static bool IsAllowedCharacter(string tag, char c)
+        {
             switch (tag)
             {
                 case "name":
-                    ValidateNameTextBox(e);
-                    break;
+                    return char.IsLetter(c) || char.IsWhiteSpace(c);
                 case "email":
-                    ValidateEmailTextBox(e);
-                    break;
+                    return char.IsLower(c) || char.IsDigit(c) || "@._-+".Contains(c);
                 case "username":
-                    ValidateUsernameTextBox(e);
-                    break;
+                    return char.IsLetterOrDigit(c);
+                case "usernameOrEmail":
+                    return char.IsLetterOrDigit(c) || "@._-+".Contains(c);
                 case "password":
-                    ValidatePasswordTextBox(e);
-                    break;
-                case "phoneNumber":
-                    ValidatePhoneNumberTextBox(txt, e);
-                    break;
                 case "confirmationCode":
-                    ValidateConfirmationCodeTextBox(e);
-                    break;
+                    return char.IsLetterOrDigit(c) || IsSpecialCharacter(c);
+                case "phoneNumber":
+                    return char.IsDigit(c);
                 case "securityAnswer":
-                    ValidateSecurityAnswerTextBox(e);
-                    break;
+                    return char.IsLetterOrDigit(c) || c == ' ';
                 case "address":
-                    ValidateAddressTextBox(e);
-                    break;
-                case "sql":
-                    // Nada xd
-                    break;
+                    return char.IsLetterOrDigit(c) || " -.,".Contains(c);
                 default:
-                    // Igual, nada xd
-                    break;
+                    // "sql" y campos sin validación
+                    return true;
             }
         }
-        private static void ValidateNameTextBox(KeyPressEventArgs e)
+        // Signos permitidos en contraseñas y códigos: cualquier signo de puntuación o símbolo visible
+        private static bool IsSpecialCharacter(char c)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Tab)
-            {
-                e.Handled = true;
-            }
-        }
-        private static void ValidatePhoneNumberTextBox(CustomTextBox txt, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Tab)
-            {
-                e.Handled = true;
-            }
-        }
-        private static void ValidateEmailTextBox(KeyPressEventArgs e)
-        {
-            if (!char.IsLower(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '@' && e.KeyChar != '.' && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Tab)
-            {
-                e.Handled = true;
-            }
-        }
-        private static void ValidateUsernameTextBox(KeyPressEventArgs e)
-        {
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Tab)
-            {
-                e.Handled = true;
-            }
-        }
-        private static void ValidatePasswordTextBox(KeyPressEventArgs e)
-        {
-            if (!char.IsLetterOrDigit(e.KeyChar) && !@"@$#_".Contains(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Tab)
-            {
-                e.Handled = true;
-            }
-        }
-        private static void ValidateConfirmationCodeTextBox(KeyPressEventArgs e)
-        {
-            if (Control.ModifierKeys == Keys.Control && (e.KeyChar == 3 || e.KeyChar == 22 || e.KeyChar == 24))
-            {
-                // El 3 es Ctrl + C, el 22 es Ctrl + V, y el 24 es Ctrl + X
-                return;
-            }
-            if (!char.IsLetterOrDigit(e.KeyChar) && !@"@$#_".Contains(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Tab)
-            {
-                e.Handled = true;
-            }
-        }
-        private static void ValidateSecurityAnswerTextBox(KeyPressEventArgs e)
-        {
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Tab && e.KeyChar != ' ')
-            {
-                e.Handled = true;
-            }
-        }
-        private static void ValidateAddressTextBox(KeyPressEventArgs e)
-        {
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Tab && e.KeyChar != ' ' && e.KeyChar != '-' && e.KeyChar != '.' && e.KeyChar != ',')
-            {
-                e.Handled = true;
-            }
+            return char.IsPunctuation(c) || char.IsSymbol(c);
         }
         public static void DetermineInitialForm()
         {
@@ -297,10 +271,9 @@ namespace HealthPortal.Helper
         }
         public static bool IsPasswordValid(string password)
         {
-            const string validCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@$#_";
             foreach (char a in password)
             {
-                if (!validCharacters.Contains(a))
+                if (!char.IsLetterOrDigit(a) && !IsSpecialCharacter(a))
                 {
                     return false;
                 }
@@ -311,18 +284,30 @@ namespace HealthPortal.Helper
                    AtLeast1Lowercase(password) &&
                    AtLeast1SpecialCharacter(password);
         }
+        // Las credenciales del correo de envío se leen de Secrets.config (ver Secrets.example.config),
+        // que no se sube al repositorio.
+        private static SmtpClient CreateSmtpClient()
+        {
+            string user = ConfigurationManager.AppSettings["SmtpUser"];
+            string password = ConfigurationManager.AppSettings["SmtpPassword"];
+            if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
+            {
+                throw new ConfigurationErrorsException("Faltan SmtpUser o SmtpPassword en Secrets.config.");
+            }
+            return new SmtpClient(ConfigurationManager.AppSettings["SmtpHost"] ?? "smtp.gmail.com", int.Parse(ConfigurationManager.AppSettings["SmtpPort"] ?? "587"))
+            {
+                Credentials = new NetworkCredential(user, password),
+                EnableSsl = true
+            };
+        }
         public static bool SendVerificationEmail(string email, string confirmationCode)
         {
             try
             {
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
-                {
-                    Credentials = new NetworkCredential($"healthportal.noreply@gmail.com", "vtgf qixd xvgf kdpo"),
-                    EnableSsl = true
-                };
+                SmtpClient client = CreateSmtpClient();
                 MailMessage mailMessage = new MailMessage
                 {
-                    From = new MailAddress("healthportal.noreply@gmail.com"),
+                    From = new MailAddress(ConfigurationManager.AppSettings["SmtpUser"]),
                     Subject = "Confirmación de Correo",
                     Body = $"¡Ha sido registrado como usuario en HealthPortal! El código de confirmación que deberá utilizar para confirmar su contraseña es: '{confirmationCode}'.",
                     IsBodyHtml = true
@@ -342,14 +327,10 @@ namespace HealthPortal.Helper
         {
             try
             {
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
-                {
-                    Credentials = new NetworkCredential($"healthportal.noreply@gmail.com", "vtgf qixd xvgf kdpo"),
-                    EnableSsl = true
-                };
+                SmtpClient client = CreateSmtpClient();
                 MailMessage mailMessage = new MailMessage
                 {
-                    From = new MailAddress("healthportal.noreply@gmail.com"),
+                    From = new MailAddress(ConfigurationManager.AppSettings["SmtpUser"]),
                     Subject = "Contraseña Temporal",
                     Body = $"¡Ha sido registrado como usuario en HealthPortal! La contraseña que deberá utilizar para inciar sesión es: '{temporaryPassword}'. Claro está que, por motivos de seguridad, es indispensable que, al iniciar sesión por primera vez, se asegure de cambiar la contraseña.",
                     IsBodyHtml = true
@@ -369,14 +350,10 @@ namespace HealthPortal.Helper
         {
             try
             {
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
-                {
-                    Credentials = new NetworkCredential($"healthportal.noreply@gmail.com", "vtgf qixd xvgf kdpo"),
-                    EnableSsl = true
-                };
+                SmtpClient client = CreateSmtpClient();
                 MailMessage mailMessage = new MailMessage
                 {
-                    From = new MailAddress("healthportal.noreply@gmail.com"),
+                    From = new MailAddress(ConfigurationManager.AppSettings["SmtpUser"]),
                     Subject = "Contraseña Temporal",
                     Body = $"Al parecer ha olvidado su contraseña para iniciar sesión en HealthPortal. La contraseña que deberá utilizar para inciar sesión es: '{temporaryPassword}'. Claro está que, por motivos de seguridad, es indispensable que, al iniciar sesión con esta nueva contraseña, se asegure de cambiar la contraseña a una de su elección. Además, ¡asegúrese de recordarla esta vez!",
                     IsBodyHtml = true
@@ -453,8 +430,7 @@ namespace HealthPortal.Helper
         }
         private static bool AtLeast1SpecialCharacter(string password)
         {
-            string specialCharacters = "@$#_";
-            return password.Any(specialCharacter => specialCharacters.Contains(specialCharacter));
+            return password.Any(IsSpecialCharacter);
         }
         public static void HandleError(string errorCode)
         {

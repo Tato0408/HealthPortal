@@ -13,19 +13,25 @@ namespace HealthPortal.Model
 {
     public class dbContext
     {
+        public static string BuildConnectionString()
+        {
+            if (string.IsNullOrEmpty(DTOdbContext.User) && string.IsNullOrEmpty(DTOdbContext.Password))
+            {
+                return $"Server = {DTOdbContext.Server}; DataBase = {DTOdbContext.Database}; Integrated Security = true";
+            }
+            return $"Server = {DTOdbContext.Server}; DataBase = {DTOdbContext.Database}; User Id = {DTOdbContext.User}; Password = {DTOdbContext.Password}";
+        }
+        // Los TableAdapters de los reportes leen su conexión de Properties.Settings; se reemplaza en
+        // tiempo de ejecución para que usen el mismo servidor configurado en config_server.xml.
+        public static void ApplyConnectionToReports()
+        {
+            Properties.Settings.Default["db_aad48c_healthportalConnectionString"] = BuildConnectionString();
+        }
         public static SqlConnection getConnection()
         {
             try
             {
-                SqlConnection connection;
-                if (string.IsNullOrEmpty(DTOdbContext.User) && string.IsNullOrEmpty(DTOdbContext.Password))
-                {
-                    connection = new SqlConnection($"Server = {DTOdbContext.Server}; DataBase = {DTOdbContext.Database}; Integrated Security = true");
-                }
-                else
-                {
-                    connection = new SqlConnection($"Server = {DTOdbContext.Server}; DataBase = {DTOdbContext.Database}; User Id = {DTOdbContext.User}; Password = {DTOdbContext.Password}");
-                }
+                SqlConnection connection = new SqlConnection(BuildConnectionString());
                 connection.Open();
                 return connection;
             }

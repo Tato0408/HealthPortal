@@ -186,8 +186,8 @@ namespace HealthPortal.View.Login
             this.txtUsername.PlaceholderText = "";
             this.txtUsername.Size = new System.Drawing.Size(326, 38);
             this.txtUsername.TabIndex = 1;
-            this.txtUsername.Tag = "username";
-            this.txtUsername.Texts = "Usuario";
+            this.txtUsername.Tag = "usernameOrEmail";
+            this.txtUsername.Texts = "Usuario o correo";
             this.txtUsername.UnderlinedStyle = false;
             // 
             // btnTestConnection

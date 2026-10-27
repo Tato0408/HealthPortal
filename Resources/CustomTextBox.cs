@@ -270,6 +270,12 @@ namespace CustomControls
                     textBox1.UseSystemPasswordChar = false;
             }
         }
+        // Inserta texto en la posición del cursor (reemplaza la selección); lo usa el pegado validado.
+        public void InsertText(string text)
+        {
+            RemovePlaceholder();
+            textBox1.SelectedText = text;
+        }
         private void RemovePlaceholder()
         {
             if (isPlaceholder && placeholderText != "")

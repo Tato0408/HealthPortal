@@ -38,8 +38,7 @@ namespace HealthPortal.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SQL8020.site4now.net;Persist Security Info=True;User ID=db_aad48c_hea" +
-            "lthportal_admin;Password=HealthPortal1234;Encrypt=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=HealthPortal;Integrated Security=True")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
@@ -49,8 +48,7 @@ namespace HealthPortal.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SQL8020.site4now.net;Initial Catalog=db_aad48c_healthportal;User ID=d" +
-            "b_aad48c_healthportal_admin;Password=HealthPortal1234")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=HealthPortal;Integrated Security=True")]
         public string db_aad48c_healthportalConnectionString {
             get {
                 return ((string)(this["db_aad48c_healthportalConnectionString"]));
