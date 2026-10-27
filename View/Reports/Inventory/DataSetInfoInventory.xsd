@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetInfoInventory" targetNamespace="http://tempuri.org/DataSetInfoInventory.xsd" xmlns:mstns="http://tempuri.org/DataSetInfoInventory.xsd" xmlns="http://tempuri.org/DataSetInfoInventory.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="db_aad48c_healthportalConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="db_aad48c_healthportalConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HealthPortal.Properties.Settings.GlobalReference.Default.db_aad48c_healthportalConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tbInventoryTableAdapter" GeneratorDataComponentClassName="tbInventoryTableAdapter" Name="tbInventory" UserDataComponentName="tbInventoryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="db_aad48c_healthportalConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillInfoInventory" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="FillInfoInventory" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillInfoInventory">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT a.idInventario, a.nombreInventario, b.categoriaMedicamento , a.fechaVencimiento, c.fechaEntradaSalida, c.horaEntradaSalida, c.cantidadInventario, c.cantidadEnvasesInventario
+FROM   Inventario.tbInventario AS a INNER JOIN
+             Inventario.tbCategoriaMedicamento AS b ON b.idCategoriaMedicamento = a.idCategoriaMedicamento INNER JOIN
+             Inventario.tbEntradaSalidaInventario AS c ON c.idInventario = a.idInventario</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="idInventario" DataSetColumn="idInventario" />
+              <Mapping SourceColumn="nombreInventario" DataSetColumn="nombreInventario" />
+              <Mapping SourceColumn="categoriaMedicamento" DataSetColumn="categoriaMedicamento" />
+              <Mapping SourceColumn="fechaVencimiento" DataSetColumn="fechaVencimiento" />
+              <Mapping SourceColumn="fechaEntradaSalida" DataSetColumn="fechaEntradaSalida" />
+              <Mapping SourceColumn="horaEntradaSalida" DataSetColumn="horaEntradaSalida" />
+              <Mapping SourceColumn="cantidadInventario" DataSetColumn="cantidadInventario" />
+              <Mapping SourceColumn="cantidadEnvasesInventario" DataSetColumn="cantidadEnvasesInventario" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetInfoInventory" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSetInfoInventory" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetInfoInventory">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tbInventory" msprop:Generator_RowClassName="tbInventoryRow" msprop:Generator_RowEvHandlerName="tbInventoryRowChangeEventHandler" msprop:Generator_RowDeletedName="tbInventoryRowDeleted" msprop:Generator_RowDeletingName="tbInventoryRowDeleting" msprop:Generator_RowEvArgName="tbInventoryRowChangeEvent" msprop:Generator_TablePropName="tbInventory" msprop:Generator_RowChangedName="tbInventoryRowChanged" msprop:Generator_UserTableName="tbInventory" msprop:Generator_RowChangingName="tbInventoryRowChanging" msprop:Generator_TableClassName="tbInventoryDataTable" msprop:Generator_TableVarName="tabletbInventory">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idInventario" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="idInventario" msprop:Generator_ColumnPropNameInTable="idInventarioColumn" msprop:Generator_ColumnVarNameInTable="columnidInventario" msprop:Generator_UserColumnName="idInventario" type="xs:int" />
+              <xs:element name="nombreInventario" msprop:Generator_ColumnPropNameInRow="nombreInventario" msprop:Generator_ColumnPropNameInTable="nombreInventarioColumn" msprop:Generator_ColumnVarNameInTable="columnnombreInventario" msprop:Generator_UserColumnName="nombreInventario">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="categoriaMedicamento" msprop:Generator_ColumnPropNameInRow="categoriaMedicamento" msprop:Generator_ColumnPropNameInTable="categoriaMedicamentoColumn" msprop:Generator_ColumnVarNameInTable="columncategoriaMedicamento" msprop:Generator_UserColumnName="categoriaMedicamento">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fechaVencimiento" msprop:Generator_ColumnPropNameInRow="fechaVencimiento" msprop:Generator_ColumnPropNameInTable="fechaVencimientoColumn" msprop:Generator_ColumnVarNameInTable="columnfechaVencimiento" msprop:Generator_UserColumnName="fechaVencimiento" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="fechaEntradaSalida" msprop:Generator_ColumnPropNameInRow="fechaEntradaSalida" msprop:Generator_ColumnPropNameInTable="fechaEntradaSalidaColumn" msprop:Generator_ColumnVarNameInTable="columnfechaEntradaSalida" msprop:Generator_UserColumnName="fechaEntradaSalida" type="xs:dateTime" />
+              <xs:element name="horaEntradaSalida" msprop:Generator_ColumnPropNameInRow="horaEntradaSalida" msprop:Generator_ColumnPropNameInTable="horaEntradaSalidaColumn" msprop:Generator_ColumnVarNameInTable="columnhoraEntradaSalida" msprop:Generator_UserColumnName="horaEntradaSalida">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cantidadInventario" msprop:Generator_ColumnPropNameInRow="cantidadInventario" msprop:Generator_ColumnPropNameInTable="cantidadInventarioColumn" msprop:Generator_ColumnVarNameInTable="columncantidadInventario" msprop:Generator_UserColumnName="cantidadInventario" type="xs:int" minOccurs="0" />
+              <xs:element name="cantidadEnvasesInventario" msprop:Generator_ColumnPropNameInRow="cantidadEnvasesInventario" msprop:Generator_ColumnPropNameInTable="cantidadEnvasesInventarioColumn" msprop:Generator_ColumnVarNameInTable="columncantidadEnvasesInventario" msprop:Generator_UserColumnName="cantidadEnvasesInventario" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tbInventory" />
+      <xs:field xpath="mstns:idInventario" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

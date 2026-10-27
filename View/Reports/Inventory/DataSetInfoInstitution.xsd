@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetInfoInstitution" targetNamespace="http://tempuri.org/DataSetInfoInstitution.xsd" xmlns:mstns="http://tempuri.org/DataSetInfoInstitution.xsd" xmlns="http://tempuri.org/DataSetInfoInstitution.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="db_aad48c_healthportalConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="db_aad48c_healthportalConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HealthPortal.Properties.Settings.GlobalReference.Default.db_aad48c_healthportalConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tbInstitutionTableAdapter" GeneratorDataComponentClassName="tbInstitutionTableAdapter" Name="tbInstitution" UserDataComponentName="tbInstitutionTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="db_aad48c_healthportalConnectionString (Settings)" DbObjectName="db_aad48c_healthportal.Institución.tbInstitución" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillInfoInstitution" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="FillInfoInstitution" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="FillInfoInstitution">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT nombreInstitución, logoInstitución
+FROM   Institución.tbInstitución</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="nombreInstitución" DataSetColumn="nombreInstitución" />
+              <Mapping SourceColumn="logoInstitución" DataSetColumn="logoInstitución" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetInfoInstitution" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSetInfoInstitution" msprop:Generator_DataSetName="DataSetInfoInstitution">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tbInstitution" msprop:Generator_RowEvHandlerName="tbInstitutionRowChangeEventHandler" msprop:Generator_RowDeletedName="tbInstitutionRowDeleted" msprop:Generator_RowDeletingName="tbInstitutionRowDeleting" msprop:Generator_RowEvArgName="tbInstitutionRowChangeEvent" msprop:Generator_TablePropName="tbInstitution" msprop:Generator_RowChangedName="tbInstitutionRowChanged" msprop:Generator_RowChangingName="tbInstitutionRowChanging" msprop:Generator_TableClassName="tbInstitutionDataTable" msprop:Generator_RowClassName="tbInstitutionRow" msprop:Generator_TableVarName="tabletbInstitution" msprop:Generator_UserTableName="tbInstitution">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nombreInstitución" msprop:Generator_ColumnPropNameInRow="nombreInstitución" msprop:Generator_ColumnPropNameInTable="nombreInstituciónColumn" msprop:Generator_ColumnVarNameInTable="columnnombreInstitución" msprop:Generator_UserColumnName="nombreInstitución">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="logoInstitución" msprop:Generator_ColumnPropNameInRow="logoInstitución" msprop:Generator_ColumnPropNameInTable="logoInstituciónColumn" msprop:Generator_ColumnVarNameInTable="columnlogoInstitución" msprop:Generator_UserColumnName="logoInstitución" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

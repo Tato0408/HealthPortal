@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetInfoUsers" targetNamespace="http://tempuri.org/DataSetInfoUsers.xsd" xmlns:mstns="http://tempuri.org/DataSetInfoUsers.xsd" xmlns="http://tempuri.org/DataSetInfoUsers.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="db_aad48c_healthportalConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="db_aad48c_healthportalConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HealthPortal.Properties.Settings.GlobalReference.Default.db_aad48c_healthportalConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tbUsersTableAdapter" GeneratorDataComponentClassName="tbUsersTableAdapter" Name="tbUsers" UserDataComponentName="tbUsersTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="db_aad48c_healthportalConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillInfoUsers" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="FillInfoUsers" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillInfoUsers">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT a.nombrePersona, a.apellidoPersona, a.correoPersona, a.telefonoPersona, c.nombreRol, a.usuario, b.estadoUsuario
+FROM   Institución.tbPersonas AS a INNER JOIN
+             Institución.tbUsuarios AS b ON b.idRol = a.idPersona INNER JOIN
+             Institución.tbRoles AS c ON c.idRol = a.idPersona</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="nombrePersona" DataSetColumn="nombrePersona" />
+              <Mapping SourceColumn="apellidoPersona" DataSetColumn="apellidoPersona" />
+              <Mapping SourceColumn="correoPersona" DataSetColumn="correoPersona" />
+              <Mapping SourceColumn="telefonoPersona" DataSetColumn="telefonoPersona" />
+              <Mapping SourceColumn="usuario" DataSetColumn="usuario" />
+              <Mapping SourceColumn="nombreRol" DataSetColumn="nombreRol" />
+              <Mapping SourceColumn="estadoUsuario" DataSetColumn="estadoUsuario" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetInfoUsers" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSetInfoUsers" msprop:Generator_DataSetName="DataSetInfoUsers">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tbUsers" msprop:Generator_RowEvHandlerName="tbUsersRowChangeEventHandler" msprop:Generator_RowDeletedName="tbUsersRowDeleted" msprop:Generator_RowDeletingName="tbUsersRowDeleting" msprop:Generator_RowEvArgName="tbUsersRowChangeEvent" msprop:Generator_TablePropName="tbUsers" msprop:Generator_RowChangedName="tbUsersRowChanged" msprop:Generator_RowChangingName="tbUsersRowChanging" msprop:Generator_TableClassName="tbUsersDataTable" msprop:Generator_RowClassName="tbUsersRow" msprop:Generator_TableVarName="tabletbUsers" msprop:Generator_UserTableName="tbUsers">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nombrePersona" msprop:Generator_ColumnPropNameInRow="nombrePersona" msprop:Generator_ColumnPropNameInTable="nombrePersonaColumn" msprop:Generator_ColumnVarNameInTable="columnnombrePersona" msprop:Generator_UserColumnName="nombrePersona">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="apellidoPersona" msprop:Generator_ColumnPropNameInRow="apellidoPersona" msprop:Generator_ColumnPropNameInTable="apellidoPersonaColumn" msprop:Generator_ColumnVarNameInTable="columnapellidoPersona" msprop:Generator_UserColumnName="apellidoPersona">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="correoPersona" msprop:Generator_ColumnPropNameInRow="correoPersona" msprop:Generator_ColumnPropNameInTable="correoPersonaColumn" msprop:Generator_ColumnVarNameInTable="columncorreoPersona" msprop:Generator_UserColumnName="correoPersona" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="telefonoPersona" msprop:Generator_ColumnPropNameInRow="telefonoPersona" msprop:Generator_ColumnPropNameInTable="telefonoPersonaColumn" msprop:Generator_ColumnVarNameInTable="columntelefonoPersona" msprop:Generator_UserColumnName="telefonoPersona" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="usuario" msprop:Generator_ColumnPropNameInRow="usuario" msprop:Generator_ColumnPropNameInTable="usuarioColumn" msprop:Generator_ColumnVarNameInTable="columnusuario" msprop:Generator_UserColumnName="usuario" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nombreRol" msprop:Generator_ColumnPropNameInRow="nombreRol" msprop:Generator_ColumnPropNameInTable="nombreRolColumn" msprop:Generator_ColumnVarNameInTable="columnnombreRol" msprop:Generator_UserColumnName="nombreRol">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="estadoUsuario" msprop:Generator_ColumnPropNameInRow="estadoUsuario" msprop:Generator_ColumnPropNameInTable="estadoUsuarioColumn" msprop:Generator_ColumnVarNameInTable="columnestadoUsuario" msprop:Generator_UserColumnName="estadoUsuario" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tbUsers" />
+      <xs:field xpath="mstns:usuario" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

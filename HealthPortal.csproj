@@ -1,0 +1,970 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props" Condition="Exists('packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{28C910F9-D35B-4141-8133-8836DCC2E781}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>HealthPortal</RootNamespace>
+    <AssemblyName>HealthPortal</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Ícono.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.160.1000.6\lib\net462\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controller\Dashboard\ControllerDashboard.cs" />
+    <Compile Include="Controller\FirstUsage\ControllerEmailVerification.cs" />
+    <Compile Include="Controller\FirstUsage\ControllerFirstUserCreation.cs" />
+    <Compile Include="Controller\FirstUsage\ControllerInstitutionCreation.cs" />
+    <Compile Include="Controller\InventoryAdministration\ControllerAddUpdateCategory.cs" />
+    <Compile Include="Controller\InventoryAdministration\ControllerAddUpdateMedicine.cs" />
+    <Compile Include="Controller\InventoryAdministration\ControllerCategoryAdministration.cs" />
+    <Compile Include="Controller\InventoryAdministration\ControllerInventoryAdministration.cs" />
+    <Compile Include="Controller\InventoryAdministration\ControllerUsageIndex.cs" />
+    <Compile Include="Controller\Login\ControllerLogin.cs" />
+    <Compile Include="Controller\MainPage\ControllerMainPage.cs" />
+    <Compile Include="Controller\PasswordManagement\ControllerAdminIntervention.cs" />
+    <Compile Include="Controller\PasswordManagement\ControllerPasswordChange.cs" />
+    <Compile Include="Controller\PasswordManagement\ControllerRecoveryMethods.cs" />
+    <Compile Include="Controller\PasswordManagement\ControllerSecurityQuestions.cs" />
+    <Compile Include="Controller\PatientAdministration\ControllerAddRole.cs" />
+    <Compile Include="Controller\PatientAdministration\ControllerAddUpdatePatient.cs" />
+    <Compile Include="Controller\PatientAdministration\ControllerAdminRol.cs" />
+    <Compile Include="Controller\PatientAdministration\ControllerPAsswordPatientDelete.cs" />
+    <Compile Include="Controller\PatientAdministration\ControllerPatientAdministration.cs" />
+    <Compile Include="Controller\PatientAdministration\ControllerPatientsTreated.cs" />
+    <Compile Include="Controller\PatientAdministration\ControllerViewPatientInfo.cs" />
+    <Compile Include="Controller\SectionAdministration\ControllerAddUpdateSection.cs" />
+    <Compile Include="Controller\SectionAdministration\ControllerSectionAdministration.cs" />
+    <Compile Include="Controller\Settings\ControllerAddUpdateSecurityAnswer.cs" />
+    <Compile Include="Controller\Settings\ControllerAddUpdateSecurityQuestion.cs" />
+    <Compile Include="Controller\Settings\ControllerInstitutionSettings.cs" />
+    <Compile Include="Controller\Settings\ControllerManuals.cs" />
+    <Compile Include="Controller\Settings\ControllerProgramSettings.cs" />
+    <Compile Include="Controller\Settings\ControllerServerSettings.cs" />
+    <Compile Include="Controller\Settings\ControllerSettings.cs" />
+    <Compile Include="Controller\Settings\ControllerUserSettings.cs" />
+    <Compile Include="Controller\UserAdministration\ControllerAddUpdateUser.cs" />
+    <Compile Include="Controller\UserAdministration\ControllerUserAdministration.cs" />
+    <Compile Include="Helper\CommonMethods.cs" />
+    <Compile Include="Helper\CurrentUserData.cs" />
+    <Compile Include="Model\DAO\DAOFirstUsage.cs" />
+    <Compile Include="Model\DAO\DAOMainPage.cs" />
+    <Compile Include="Model\DAO\DAOPasswordManagement.cs" />
+    <Compile Include="Model\DAO\DAOSectionAdministration.cs" />
+    <Compile Include="Model\DAO\DAOPatientAdministration.cs" />
+    <Compile Include="Model\DAO\DAOInventoryAdministration.cs" />
+    <Compile Include="Model\DAO\DAOLogin.cs" />
+    <Compile Include="Model\DAO\DAOSettings.cs" />
+    <Compile Include="Model\DAO\DAOUserAdministration.cs" />
+    <Compile Include="Model\dbContext.cs" />
+    <Compile Include="Model\DTO\DTOdbContext.cs" />
+    <Compile Include="Model\DTO\DTOFirstUsage.cs" />
+    <Compile Include="Model\DTO\DTOLogin.cs" />
+    <Compile Include="Model\DTO\DTOMainPage.cs" />
+    <Compile Include="Model\DTO\DTOPasswordManagement.cs" />
+    <Compile Include="Model\DTO\DTOSectionAdministration.cs" />
+    <Compile Include="Model\DTO\DTOPatientAdministration.cs" />
+    <Compile Include="Model\DTO\DTOInventoryAdministration.cs" />
+    <Compile Include="Model\DTO\DTOSettings.cs" />
+    <Compile Include="Model\DTO\DTOUserAdministration.cs" />
+    <Compile Include="Properties\Resources1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dashboard\FrmDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Dashboard\FrmDashboard.Designer.cs">
+      <DependentUpon>FrmDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FirstUsage\FrmEmailVerification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FirstUsage\FrmEmailVerification.Designer.cs">
+      <DependentUpon>FrmEmailVerification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FirstUsage\FrmFirstUserCreation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FirstUsage\FrmFirstUserCreation.Designer.cs">
+      <DependentUpon>FrmFirstUserCreation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FirstUsage\FrmInstitutionCreation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FirstUsage\FrmInstitutionCreation.Designer.cs">
+      <DependentUpon>FrmInstitutionCreation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\InventoryAdministration\FrmAddUpdateCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\InventoryAdministration\FrmAddUpdateCategory.Designer.cs">
+      <DependentUpon>FrmAddUpdateCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\InventoryAdministration\FrmCategoryAdministration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\InventoryAdministration\FrmCategoryAdministration.Designer.cs">
+      <DependentUpon>FrmCategoryAdministration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\InventoryAdministration\FrmUsageIndex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\InventoryAdministration\FrmUsageIndex.Designer.cs">
+      <DependentUpon>FrmUsageIndex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainPage\FrmMainPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MainPage\FrmMainPage.Designer.cs">
+      <DependentUpon>FrmMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PasswordManagement\FrmAdminIntervention.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PasswordManagement\FrmAdminIntervention.Designer.cs">
+      <DependentUpon>FrmAdminIntervention.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PasswordManagement\FrmPasswordChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PasswordManagement\FrmPasswordChange.Designer.cs">
+      <DependentUpon>FrmPasswordChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PasswordManagement\FrmRecoveryMethods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PasswordManagement\FrmRecoveryMethods.Designer.cs">
+      <DependentUpon>FrmRecoveryMethods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PasswordManagement\FrmSecurityQuestions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PasswordManagement\FrmSecurityQuestions.Designer.cs">
+      <DependentUpon>FrmSecurityQuestions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientAdministration\FrmAddRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientAdministration\FrmAddRole.Designer.cs">
+      <DependentUpon>FrmAddRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientAdministration\FrmAdminRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientAdministration\FrmAdminRol.Designer.cs">
+      <DependentUpon>FrmAdminRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientAdministration\FrmPasswordPatientDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientAdministration\FrmPasswordPatientDelete.Designer.cs">
+      <DependentUpon>FrmPasswordPatientDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientAdministration\FrmPatientsTreated.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientAdministration\FrmPatientsTreated.Designer.cs">
+      <DependentUpon>FrmPatientsTreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientAdministration\FrmViewPatientInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientAdministration\FrmViewPatientInfo.Designer.cs">
+      <DependentUpon>FrmViewPatientInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\Inventory\DataSetInfoInstitution.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetInfoInstitution.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\Inventory\DataSetInfoInventory.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetInfoInventory.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\Inventory\FrmViewGeneralInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reports\Inventory\FrmViewGeneralInventory.Designer.cs">
+      <DependentUpon>FrmViewGeneralInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\Patient\DataSetInfoPatient.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetInfoPatient.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\Patient\DataSetInfoVisit.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetInfoVisit.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\Patient\DataSetSpecificVisit.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetSpecificVisit.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\Patient\FrmSpecificVisit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reports\Patient\FrmSpecificVisit.Designer.cs">
+      <DependentUpon>FrmSpecificVisit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\Patient\FrmViewGeneralPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reports\Patient\FrmViewGeneralPatient.Designer.cs">
+      <DependentUpon>FrmViewGeneralPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\Patient\FrmViewGeneralVisit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reports\Patient\FrmViewGeneralVisit.Designer.cs">
+      <DependentUpon>FrmViewGeneralVisit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\User\DataSetInfoUsers.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetInfoUsers.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\User\FrmViewGeneralUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reports\User\FrmViewGeneralUsers.Designer.cs">
+      <DependentUpon>FrmViewGeneralUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SectionAdministration\FrmAddUpdateSection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SectionAdministration\FrmAddUpdateSection.Designer.cs">
+      <DependentUpon>FrmAddUpdateSection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SectionAdministration\FrmSectionAdministration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SectionAdministration\FrmSectionAdministration.Designer.cs">
+      <DependentUpon>FrmSectionAdministration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\InventoryAdministration\FrmAddUpdateMedicine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\InventoryAdministration\FrmAddUpdateMedicine.Designer.cs">
+      <DependentUpon>FrmAddUpdateMedicine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\InventoryAdministration\FrmInventoryAdministration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\InventoryAdministration\FrmInventoryAdministration.Designer.cs">
+      <DependentUpon>FrmInventoryAdministration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Login\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Login\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientAdministration\FrmAddUpdatePatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientAdministration\FrmAddUpdatePatient.Designer.cs">
+      <DependentUpon>FrmAddUpdatePatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientAdministration\FrmPatientAdministration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientAdministration\FrmPatientAdministration.Designer.cs">
+      <DependentUpon>FrmPatientAdministration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\CustomTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resources\CustomTextBox.Designer.cs">
+      <DependentUpon>CustomTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\PanelCustom.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resources\RJButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Settings\FrmAddUpdateSecurityAnswer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Settings\FrmAddUpdateSecurityAnswer.Designer.cs">
+      <DependentUpon>FrmAddUpdateSecurityAnswer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\FrmAddUpdateSecurityQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Settings\FrmAddUpdateSecurityQuestion.Designer.cs">
+      <DependentUpon>FrmAddUpdateSecurityQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\FrmInstitutionSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Settings\FrmInstitutionSettings.Designer.cs">
+      <DependentUpon>FrmInstitutionSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\FrmManuals.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Settings\FrmManuals.Designer.cs">
+      <DependentUpon>FrmManuals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\FrmProgramSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Settings\FrmProgramSettings.Designer.cs">
+      <DependentUpon>FrmProgramSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\FrmServerSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Settings\FrmServerSettings.Designer.cs">
+      <DependentUpon>FrmServerSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\FrmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Settings\FrmSettings.Designer.cs">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\FrmUserSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Settings\FrmUserSettings.Designer.cs">
+      <DependentUpon>FrmUserSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserAdministration\FrmAddUpdateUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\UserAdministration\FrmAddUpdateUser.Designer.cs">
+      <DependentUpon>FrmAddUpdateUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserAdministration\FrmUserAdministration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\UserAdministration\FrmUserAdministration.Designer.cs">
+      <DependentUpon>FrmUserAdministration.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="View\Dashboard\FrmDashboard.resx">
+      <DependentUpon>FrmDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FirstUsage\FrmEmailVerification.resx">
+      <DependentUpon>FrmEmailVerification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FirstUsage\FrmFirstUserCreation.resx">
+      <DependentUpon>FrmFirstUserCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FirstUsage\FrmInstitutionCreation.resx">
+      <DependentUpon>FrmInstitutionCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\InventoryAdministration\FrmAddUpdateCategory.resx">
+      <DependentUpon>FrmAddUpdateCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\InventoryAdministration\FrmAddUpdateMedicine.resx">
+      <DependentUpon>FrmAddUpdateMedicine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\InventoryAdministration\FrmCategoryAdministration.resx">
+      <DependentUpon>FrmCategoryAdministration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\InventoryAdministration\FrmUsageIndex.resx">
+      <DependentUpon>FrmUsageIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MainPage\FrmMainPage.resx">
+      <DependentUpon>FrmMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PasswordManagement\FrmAdminIntervention.resx">
+      <DependentUpon>FrmAdminIntervention.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PasswordManagement\FrmPasswordChange.resx">
+      <DependentUpon>FrmPasswordChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PasswordManagement\FrmRecoveryMethods.resx">
+      <DependentUpon>FrmRecoveryMethods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PasswordManagement\FrmSecurityQuestions.resx">
+      <DependentUpon>FrmSecurityQuestions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientAdministration\FrmAddRole.resx">
+      <DependentUpon>FrmAddRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientAdministration\FrmAdminRol.resx">
+      <DependentUpon>FrmAdminRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientAdministration\FrmPasswordPatientDelete.resx">
+      <DependentUpon>FrmPasswordPatientDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientAdministration\FrmPatientsTreated.resx">
+      <DependentUpon>FrmPatientsTreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientAdministration\FrmViewPatientInfo.resx">
+      <DependentUpon>FrmViewPatientInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\Inventory\FrmViewGeneralInventory.resx">
+      <DependentUpon>FrmViewGeneralInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\Inventory\General_Inventory.rdlc" />
+    <EmbeddedResource Include="View\Reports\Patient\FrmSpecificVisit.resx">
+      <DependentUpon>FrmSpecificVisit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\Patient\FrmViewGeneralPatient.resx">
+      <DependentUpon>FrmViewGeneralPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\Patient\FrmViewGeneralVisit.resx">
+      <DependentUpon>FrmViewGeneralVisit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\Patient\specific_Visit.rdlc" />
+    <EmbeddedResource Include="View\Reports\Patient\General_Patient.rdlc" />
+    <EmbeddedResource Include="View\Reports\Patient\General_Visit.rdlc" />
+    <EmbeddedResource Include="View\Reports\User\FrmViewGeneralUsers.resx">
+      <DependentUpon>FrmViewGeneralUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\User\General_Users.rdlc" />
+    <EmbeddedResource Include="View\SectionAdministration\FrmAddUpdateSection.resx">
+      <DependentUpon>FrmAddUpdateSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SectionAdministration\FrmSectionAdministration.resx">
+      <DependentUpon>FrmSectionAdministration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\InventoryAdministration\FrmInventoryAdministration.resx">
+      <DependentUpon>FrmInventoryAdministration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Login\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientAdministration\FrmAddUpdatePatient.resx">
+      <DependentUpon>FrmAddUpdatePatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientAdministration\FrmPatientAdministration.resx">
+      <DependentUpon>FrmPatientAdministration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CustomTextBox.resx">
+      <DependentUpon>CustomTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Settings\FrmAddUpdateSecurityAnswer.resx">
+      <DependentUpon>FrmAddUpdateSecurityAnswer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Settings\FrmAddUpdateSecurityQuestion.resx">
+      <DependentUpon>FrmAddUpdateSecurityQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Settings\FrmInstitutionSettings.resx">
+      <DependentUpon>FrmInstitutionSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Settings\FrmManuals.resx">
+      <DependentUpon>FrmManuals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Settings\FrmProgramSettings.resx">
+      <DependentUpon>FrmProgramSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Settings\FrmServerSettings.resx">
+      <DependentUpon>FrmServerSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Settings\FrmSettings.resx">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Settings\FrmUserSettings.resx">
+      <DependentUpon>FrmUserSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UserAdministration\FrmAddUpdateUser.resx">
+      <DependentUpon>FrmAddUpdateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UserAdministration\FrmUserAdministration.resx">
+      <DependentUpon>FrmUserAdministration.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="View\Reports\Inventory\DataSetInfoInstitution.xsc">
+      <DependentUpon>DataSetInfoInstitution.xsd</DependentUpon>
+    </None>
+    <None Include="View\Reports\Inventory\DataSetInfoInstitution.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetInfoInstitution.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="View\Reports\Inventory\DataSetInfoInstitution.xss">
+      <DependentUpon>DataSetInfoInstitution.xsd</DependentUpon>
+    </None>
+    <None Include="View\Reports\Inventory\DataSetInfoInventory.xsc">
+      <DependentUpon>DataSetInfoInventory.xsd</DependentUpon>
+    </None>
+    <None Include="View\Reports\Inventory\DataSetInfoInventory.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetInfoInventory.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="View\Reports\Inventory\DataSetInfoInventory.xss">
+      <DependentUpon>DataSetInfoInventory.xsd</DependentUpon>
+    </None>
+    <None Include="View\Reports\Patient\DataSetInfoPatient.xsc">
+      <DependentUpon>DataSetInfoPatient.xsd</DependentUpon>
+    </None>
+    <None Include="View\Reports\Patient\DataSetInfoPatient.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetInfoPatient.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="View\Reports\Patient\DataSetInfoPatient.xss">
+      <DependentUpon>DataSetInfoPatient.xsd</DependentUpon>
+    </None>
+    <None Include="View\Reports\Patient\DataSetInfoVisit.xsc">
+      <DependentUpon>DataSetInfoVisit.xsd</DependentUpon>
+    </None>
+    <None Include="View\Reports\Patient\DataSetInfoVisit.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetInfoVisit.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="View\Reports\Patient\DataSetInfoVisit.xss">
+      <DependentUpon>DataSetInfoVisit.xsd</DependentUpon>
+    </None>
+    <None Include="View\Reports\Patient\DataSetSpecificVisit.xsc">
+      <DependentUpon>DataSetSpecificVisit.xsd</DependentUpon>
+    </None>
+    <None Include="View\Reports\Patient\DataSetSpecificVisit.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetSpecificVisit.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="View\Reports\Patient\DataSetSpecificVisit.xss">
+      <DependentUpon>DataSetSpecificVisit.xsd</DependentUpon>
+    </None>
+    <None Include="View\Reports\User\DataSetInfoUsers.xsc">
+      <DependentUpon>DataSetInfoUsers.xsd</DependentUpon>
+    </None>
+    <None Include="View\Reports\User\DataSetInfoUsers.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetInfoUsers.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="View\Reports\User\DataSetInfoUsers.xss">
+      <DependentUpon>DataSetInfoUsers.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-alt-2-regular-36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-regular-241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pacientes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pacientes1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hogar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monitor-de-tablero %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monitor-de-tablero %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hogar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pastillas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grafico-histograma.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lista-del-portapapeles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\salida.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\busqueda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\busqueda %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\medico %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\actualizar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\basura.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ojo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ojo %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\procedimientos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\agregar-usuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leccion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leccion %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Group 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\show1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quit1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hide1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ícono R.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ícono.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gravity-ui_gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ícono.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\material-symbols_logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mdi_graph-line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\octicon_checklist-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\octicon_home-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\solar_pills-line-duotone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\majesticons_user-line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\octicon_checklist-161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\octicon_home-161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\solar_pills-line-duotone1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\majesticons_user-line1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bx_book1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\material-symbols_logout1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mdi_graph-line1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bx_book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gg_menu-round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gg_menu-round-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\visits.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inventory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\statistics.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sections.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverInventory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverLogout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverMain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverMenu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverSections.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverStatistics.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverUsers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverVisits.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverEmailRecovery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emailRecovery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverSecurityQuestions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\securityQuestions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverPIN.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PIN.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverAdminIntervention.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\adminIntervention.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverQuit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverShow32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\show32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverHide32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hide32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverShow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\show.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverHide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverWifi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wifi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverServer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\server.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverSchool.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\school.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverSettings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverHealthPortal32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\healthportal32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverHealthPortal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\healthPortal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serverSettings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gquit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverMaximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoverResize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\borrar-usuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\agregar-usuario %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\agregar-documento.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\actualizar %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\papelera-xmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\descripcion-general.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\multiple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ícono.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props'))" />
+  </Target>
+</Project>

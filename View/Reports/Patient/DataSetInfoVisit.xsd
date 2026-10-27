@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetInfoVisit" targetNamespace="http://tempuri.org/DataSetInfoVisit.xsd" xmlns:mstns="http://tempuri.org/DataSetInfoVisit.xsd" xmlns="http://tempuri.org/DataSetInfoVisit.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="db_aad48c_healthportalConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="db_aad48c_healthportalConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HealthPortal.Properties.Settings.GlobalReference.Default.db_aad48c_healthportalConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tbVisitasTableAdapter" GeneratorDataComponentClassName="tbVisitasTableAdapter" Name="tbVisitas" UserDataComponentName="tbVisitasTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="db_aad48c_healthportalConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillNewInfoVisit" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="FillNewInfoVisit" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillNewInfoVisit">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT a.nombrePaciente, a.apellidoPaciente, b.tipoPersona, a.codigo, d.grupoTecnico, g.grado, h.seccionAcademica, i.especialidad, c.fechaVisita, c.horaVisita, e.nombreInventario
+FROM   Pacientes.tbPacientes AS a INNER JOIN
+             Pacientes.tbTipoPersona AS b ON b.idTipoPersona = a.idTipoPersona INNER JOIN
+             Visitas.tbVisitas AS c ON c.idPaciente = a.idPaciente INNER JOIN
+             Secciones.tbGradoSeccion AS d ON d.idGradoSeccion = a.idGradoSeccion INNER JOIN
+             Secciones.tbGrados AS g ON g.idGrado = a.idGradoSeccion INNER JOIN
+             Secciones.tbSeccionAcademica AS h ON h.idSeccionAcademica = a.idGradoSeccion INNER JOIN
+             Secciones.tbEspecialidades AS i ON i.idEspecialidad = a.idGradoSeccion INNER JOIN
+             Inventario.tbInventario AS e ON e.idInventario = c.idInventario INNER JOIN
+             Institución.tbPersonas AS f ON f.idPersona = c.idPersona</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="fechaVisita" DataSetColumn="fechaVisita" />
+              <Mapping SourceColumn="horaVisita" DataSetColumn="horaVisita" />
+              <Mapping SourceColumn="nombrePaciente" DataSetColumn="nombrePaciente" />
+              <Mapping SourceColumn="apellidoPaciente" DataSetColumn="apellidoPaciente" />
+              <Mapping SourceColumn="tipoPersona" DataSetColumn="tipoPersona" />
+              <Mapping SourceColumn="codigo" DataSetColumn="codigo" />
+              <Mapping SourceColumn="grupoTecnico" DataSetColumn="grupoTecnico" />
+              <Mapping SourceColumn="grado" DataSetColumn="grado" />
+              <Mapping SourceColumn="seccionAcademica" DataSetColumn="seccionAcademica" />
+              <Mapping SourceColumn="especialidad" DataSetColumn="especialidad" />
+              <Mapping SourceColumn="nombreInventario" DataSetColumn="nombreInventario" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="db_aad48c_healthportalConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="AdminPatientDate" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="AdminPatientDate" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="AdminPatientDate">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT a.nombrePaciente, a.apellidoPaciente, b.tipoPersona, a.codigo, d.grupoTecnico, g.grado, h.seccionAcademica, i.especialidad, c.fechaVisita, c.horaVisita, e.nombreInventario
+FROM     Pacientes.tbPacientes AS a INNER JOIN
+                  Pacientes.tbTipoPersona AS b ON b.idTipoPersona = a.idTipoPersona INNER JOIN
+                  Visitas.tbVisitas AS c ON c.idPaciente = a.idPaciente INNER JOIN
+                  Secciones.tbGradoSeccion AS d ON d.idGradoSeccion = a.idGradoSeccion INNER JOIN
+                  Secciones.tbGrados AS g ON g.idGrado = a.idGradoSeccion INNER JOIN
+                  Secciones.tbSeccionAcademica AS h ON h.idSeccionAcademica = a.idGradoSeccion INNER JOIN
+                  Secciones.tbEspecialidades AS i ON i.idEspecialidad = a.idGradoSeccion INNER JOIN
+                  Inventario.tbInventario AS e ON e.idInventario = c.idInventario INNER JOIN
+                  Institución.tbPersonas AS f ON f.idPersona = c.idPersona
+WHERE  (c.fechaVisita BETWEEN @param1 AND @param2)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="param1" ColumnName="fechaVisita" DataSourceName="db_aad48c_healthportal.Visitas.tbVisitas" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@param1" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="fechaVisita" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="param2" ColumnName="fechaVisita" DataSourceName="db_aad48c_healthportal.Visitas.tbVisitas" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@param2" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="fechaVisita" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="db_aad48c_healthportalConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="PatientSearch" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy1" GeneratorSourceName="PatientSearch" GetMethodModifier="Public" GetMethodName="GetDataBy1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="PatientSearch">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT a.nombrePaciente, a.apellidoPaciente, b.tipoPersona, a.codigo, d.grupoTecnico, g.grado, h.seccionAcademica, i.especialidad, c.fechaVisita, c.horaVisita, e.nombreInventario
+FROM     Pacientes.tbPacientes AS a INNER JOIN
+                  Pacientes.tbTipoPersona AS b ON b.idTipoPersona = a.idTipoPersona INNER JOIN
+                  Visitas.tbVisitas AS c ON c.idPaciente = a.idPaciente INNER JOIN
+                  Secciones.tbGradoSeccion AS d ON d.idGradoSeccion = a.idGradoSeccion INNER JOIN
+                  Secciones.tbGrados AS g ON g.idGrado = a.idGradoSeccion INNER JOIN
+                  Secciones.tbSeccionAcademica AS h ON h.idSeccionAcademica = a.idGradoSeccion INNER JOIN
+                  Secciones.tbEspecialidades AS i ON i.idEspecialidad = a.idGradoSeccion INNER JOIN
+                  Inventario.tbInventario AS e ON e.idInventario = c.idInventario INNER JOIN
+                  Institución.tbPersonas AS f ON f.idPersona = c.idPersona
+WHERE  (a.nombrePaciente = @Param1) OR
+                  (a.apellidoPaciente = @Param1) OR
+                  (a.codigo = @Param1) OR
+                  (i.especialidad = @Param1)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param1" ColumnName="nombrePaciente" DataSourceName="db_aad48c_healthportal.Pacientes.tbPacientes" DataTypeServer="varchar(60)" DbType="AnsiString" Direction="Input" ParameterName="@Param1" Precision="0" ProviderType="VarChar" Scale="0" Size="60" SourceColumn="nombrePaciente" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetInfoVisit" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSetInfoVisit" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetInfoVisit">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tbVisitas" msprop:Generator_RowEvHandlerName="tbVisitasRowChangeEventHandler" msprop:Generator_RowDeletedName="tbVisitasRowDeleted" msprop:Generator_RowDeletingName="tbVisitasRowDeleting" msprop:Generator_RowEvArgName="tbVisitasRowChangeEvent" msprop:Generator_TablePropName="tbVisitas" msprop:Generator_RowChangedName="tbVisitasRowChanged" msprop:Generator_UserTableName="tbVisitas" msprop:Generator_RowChangingName="tbVisitasRowChanging" msprop:Generator_RowClassName="tbVisitasRow" msprop:Generator_TableClassName="tbVisitasDataTable" msprop:Generator_TableVarName="tabletbVisitas">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="fechaVisita" msprop:Generator_ColumnPropNameInTable="fechaVisitaColumn" msprop:Generator_ColumnPropNameInRow="fechaVisita" msprop:Generator_UserColumnName="fechaVisita" msprop:Generator_ColumnVarNameInTable="columnfechaVisita" type="xs:dateTime" />
+              <xs:element name="horaVisita" msprop:Generator_ColumnPropNameInTable="horaVisitaColumn" msprop:Generator_ColumnPropNameInRow="horaVisita" msprop:Generator_UserColumnName="horaVisita" msprop:Generator_ColumnVarNameInTable="columnhoraVisita">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nombrePaciente" msprop:Generator_ColumnPropNameInTable="nombrePacienteColumn" msprop:Generator_ColumnPropNameInRow="nombrePaciente" msprop:Generator_UserColumnName="nombrePaciente" msprop:Generator_ColumnVarNameInTable="columnnombrePaciente">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="apellidoPaciente" msprop:Generator_ColumnPropNameInTable="apellidoPacienteColumn" msprop:Generator_ColumnPropNameInRow="apellidoPaciente" msprop:Generator_UserColumnName="apellidoPaciente" msprop:Generator_ColumnVarNameInTable="columnapellidoPaciente">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tipoPersona" msprop:Generator_ColumnPropNameInTable="tipoPersonaColumn" msprop:Generator_ColumnPropNameInRow="tipoPersona" msprop:Generator_UserColumnName="tipoPersona" msprop:Generator_ColumnVarNameInTable="columntipoPersona" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="codigo" msprop:Generator_ColumnPropNameInTable="codigoColumn" msprop:Generator_ColumnPropNameInRow="codigo" msprop:Generator_UserColumnName="codigo" msprop:Generator_ColumnVarNameInTable="columncodigo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="grupoTecnico" msprop:Generator_ColumnPropNameInTable="grupoTecnicoColumn" msprop:Generator_ColumnPropNameInRow="grupoTecnico" msprop:Generator_UserColumnName="grupoTecnico" msprop:Generator_ColumnVarNameInTable="columngrupoTecnico">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="grado" msprop:Generator_ColumnPropNameInTable="gradoColumn" msprop:Generator_ColumnPropNameInRow="grado" msprop:Generator_UserColumnName="grado" msprop:Generator_ColumnVarNameInTable="columngrado">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="seccionAcademica" msprop:Generator_ColumnPropNameInTable="seccionAcademicaColumn" msprop:Generator_ColumnPropNameInRow="seccionAcademica" msprop:Generator_UserColumnName="seccionAcademica" msprop:Generator_ColumnVarNameInTable="columnseccionAcademica">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="especialidad" msprop:Generator_ColumnPropNameInTable="especialidadColumn" msprop:Generator_ColumnPropNameInRow="especialidad" msprop:Generator_UserColumnName="especialidad" msprop:Generator_ColumnVarNameInTable="columnespecialidad">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nombreInventario" msprop:Generator_ColumnPropNameInTable="nombreInventarioColumn" msprop:Generator_ColumnPropNameInRow="nombreInventario" msprop:Generator_UserColumnName="nombreInventario" msprop:Generator_ColumnVarNameInTable="columnnombreInventario">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

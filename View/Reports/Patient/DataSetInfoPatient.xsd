@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetInfoPatient" targetNamespace="http://tempuri.org/DataSetInfoPatient.xsd" xmlns:mstns="http://tempuri.org/DataSetInfoPatient.xsd" xmlns="http://tempuri.org/DataSetInfoPatient.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="db_aad48c_healthportalConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="db_aad48c_healthportalConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HealthPortal.Properties.Settings.GlobalReference.Default.db_aad48c_healthportalConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tbPatientTableAdapter" GeneratorDataComponentClassName="tbPatientTableAdapter" Name="tbPatient" UserDataComponentName="tbPatientTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="db_aad48c_healthportalConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillInfoPatient" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="FillInfoPatient" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="FillInfoPatient">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT a.nombrePaciente, a.apellidoPaciente, a.codigo, b.tipoPersona, c.grado, d.seccionAcademica, e.especialidad, f.grupoTecnico
+FROM   Pacientes.tbPacientes AS a INNER JOIN
+             Pacientes.tbTipoPersona AS b ON b.idTipoPersona = a.idTipoPersona LEFT OUTER JOIN
+             Secciones.tbGrados AS c ON c.idGrado = a.idGradoSeccion INNER JOIN
+             Secciones.tbSeccionAcademica AS d ON d.idSeccionAcademica = a.idGradoSeccion INNER JOIN
+             Secciones.tbEspecialidades AS e ON e.idEspecialidad = a.idGradoSeccion INNER JOIN
+             Secciones.tbGradoSeccion AS f ON f.idGradoSeccion = a.idGradoSeccion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="nombrePaciente" DataSetColumn="nombrePaciente" />
+              <Mapping SourceColumn="apellidoPaciente" DataSetColumn="apellidoPaciente" />
+              <Mapping SourceColumn="codigo" DataSetColumn="codigo" />
+              <Mapping SourceColumn="tipoPersona" DataSetColumn="tipoPersona" />
+              <Mapping SourceColumn="grado" DataSetColumn="grado" />
+              <Mapping SourceColumn="seccionAcademica" DataSetColumn="seccionAcademica" />
+              <Mapping SourceColumn="especialidad" DataSetColumn="especialidad" />
+              <Mapping SourceColumn="grupoTecnico" DataSetColumn="grupoTecnico" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetInfoPatient" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSetInfoPatient" msprop:Generator_DataSetName="DataSetInfoPatient">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tbPatient" msprop:Generator_RowEvHandlerName="tbPatientRowChangeEventHandler" msprop:Generator_RowDeletedName="tbPatientRowDeleted" msprop:Generator_RowDeletingName="tbPatientRowDeleting" msprop:Generator_RowEvArgName="tbPatientRowChangeEvent" msprop:Generator_TablePropName="tbPatient" msprop:Generator_RowChangedName="tbPatientRowChanged" msprop:Generator_RowChangingName="tbPatientRowChanging" msprop:Generator_TableClassName="tbPatientDataTable" msprop:Generator_RowClassName="tbPatientRow" msprop:Generator_TableVarName="tabletbPatient" msprop:Generator_UserTableName="tbPatient">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nombrePaciente" msprop:Generator_ColumnPropNameInRow="nombrePaciente" msprop:Generator_ColumnPropNameInTable="nombrePacienteColumn" msprop:Generator_ColumnVarNameInTable="columnnombrePaciente" msprop:Generator_UserColumnName="nombrePaciente">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="apellidoPaciente" msprop:Generator_ColumnPropNameInRow="apellidoPaciente" msprop:Generator_ColumnPropNameInTable="apellidoPacienteColumn" msprop:Generator_ColumnVarNameInTable="columnapellidoPaciente" msprop:Generator_UserColumnName="apellidoPaciente">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="codigo" msprop:Generator_ColumnPropNameInRow="codigo" msprop:Generator_ColumnPropNameInTable="codigoColumn" msprop:Generator_ColumnVarNameInTable="columncodigo" msprop:Generator_UserColumnName="codigo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tipoPersona" msprop:Generator_ColumnPropNameInRow="tipoPersona" msprop:Generator_ColumnPropNameInTable="tipoPersonaColumn" msprop:Generator_ColumnVarNameInTable="columntipoPersona" msprop:Generator_UserColumnName="tipoPersona" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="grado" msprop:Generator_ColumnPropNameInRow="grado" msprop:Generator_ColumnPropNameInTable="gradoColumn" msprop:Generator_ColumnVarNameInTable="columngrado" msprop:Generator_UserColumnName="grado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="seccionAcademica" msprop:Generator_ColumnPropNameInRow="seccionAcademica" msprop:Generator_ColumnPropNameInTable="seccionAcademicaColumn" msprop:Generator_ColumnVarNameInTable="columnseccionAcademica" msprop:Generator_UserColumnName="seccionAcademica">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="especialidad" msprop:Generator_ColumnPropNameInRow="especialidad" msprop:Generator_ColumnPropNameInTable="especialidadColumn" msprop:Generator_ColumnVarNameInTable="columnespecialidad" msprop:Generator_UserColumnName="especialidad">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="grupoTecnico" msprop:Generator_ColumnPropNameInRow="grupoTecnico" msprop:Generator_ColumnPropNameInTable="grupoTecnicoColumn" msprop:Generator_ColumnVarNameInTable="columngrupoTecnico" msprop:Generator_UserColumnName="grupoTecnico">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
